@@ -1,6 +1,6 @@
 body {
   background-color: rgb(236, 232, 255);
-  color: rgb(29, 25, 48);
+  color: #2c2451;
   box-sizing: border-box;
   margin: 0px;
   overflow-x: hidden;
@@ -397,6 +397,7 @@ header {
   flex-direction: column;
   align-items: center;
   padding-bottom: 8svh;
+  text-align: center;
 }
 
 .roller-content {
@@ -405,26 +406,29 @@ header {
   flex-wrap: wrap;
   width: 90vw;
   justify-content: space-evenly;
-  padding: 10%;
+  padding: 5%;
 }
 
 .roller-section {
   margin: 30px;
-  width: 100px;
+  padding: 7svh 3svh;
   border: solid 1px #2c2451;
   border-radius: 16px;
+  background-color: #2c2451;
 }
 
 .roller-section-legende {
   text-align: center;
-  font-weight: 700;
-  margin-top: 20px;
+  justify-content: center;
+  font-weight: 500;
+  font-size: 1rem;
+  color: white;
 }
 
 .roller-content .roller-section-image {
   text-align: center;
   font-size: 10svh;
-  color: rgb(29, 25, 48);
+  color: white;
   width: 100%;
 }
 
@@ -433,7 +437,7 @@ header {
   flex-direction: column;
   align-items: center;
   height: fit-content;
-  padding: 10svh;
+  padding: 5svh 10svh;
 }
 
 .projects h1 {
@@ -470,12 +474,38 @@ header {
 .projects-content-image {
   height: 20svh;
   width: 100%;
-  background-image: url(ressources/project-portfolio.png);
-  background-size: cover;
   filter: grayscale(100%);
   transition: all 0.5s ease-in-out;
+  z-index: 1;
+}
+
+.projects-content-image-portfolio {
+  background-image: url(ressources/project-portfolio.png);
+  background-size: cover;
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+}
+
+.projects-content-image-cs50x {
+  background-image: url(ressources/project-cs50x.png);
+  background-size: cover;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+}
+
+.projects-content-image-cs50p-final {
+  background-image: url(ressources/project-cs50p-final.png);
+  background-size: cover;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  height: 100%;
+  width: 100%;
   z-index: 1;
 }
 
@@ -505,8 +535,22 @@ header {
   transition: all 0.5s ease-in-out;
 }
 
-@media (pointer: coarse) {
-  .projects-content-description {
+@media screen and (max-width: 1025px) {
+  .projects-content .projects-content-description {
     opacity: 1;
   }
+
+  .projects-content-image {
+    filter: grayscale(0%);
+    transition: all 0.5s ease-in-out;
+  }
+}
+
+footer {
+  background-color: #2c2451;
+  color: white;
+  height: 5svh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
