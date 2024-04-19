@@ -10,6 +10,11 @@ body {
   font-style: normal;
 }
 
+.astronaut-wip {
+  height: 200px;
+  width: 200px;
+}
+
 body::-webkit-scrollbar {
   display: none;
 }
@@ -553,4 +558,18 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.projets-header {
+  height: 30svh;
+  background-image: url("../ressources/project-portfolio.png");
+  background-size: cover;
+  /* filter: blur(10px) contrast(50%);
+  background-color: #2c2451;
+  border: none; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 5svh;
 }
