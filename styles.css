@@ -1,13 +1,39 @@
-body {
+html {
+  scroll-behavior: smooth;
   background-color: rgb(236, 232, 255);
   color: #2c2451;
   box-sizing: border-box;
-  margin: 0px;
   overflow-x: hidden;
   max-width: 100%;
   font-family: "Poppins", sans-serif;
   font-weight: 500;
   font-style: normal;
+}
+
+@media screen and (min-width: 1025px) {
+  html {
+    cursor: none;
+  }
+
+  a {
+    cursor: none;
+  }
+
+  .mouse-trail .circle {
+    height: 24px;
+    width: 24px;
+    border-radius: 24px;
+    background-color: #deab2b;
+    position: fixed;
+    z-index: 9999;
+    border: none;
+    pointer-events: none;
+    opacity: 30%;
+  }
+}
+
+body {
+  margin: 0px;
 }
 
 .astronaut-wip {
@@ -411,12 +437,19 @@ header {
   flex-wrap: wrap;
   width: 90vw;
   justify-content: space-evenly;
-  padding: 5%;
+  padding: clamp(5vw, 10svh) 5% 5% 5%;
+}
+
+@media screen and (max-width: 430px) {
+  .roller-content {
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+  }
 }
 
 .roller-section {
   margin: 30px;
-  padding: 7svh 3svh;
+  padding: 7svh 4.3svh;
   border: solid 1px #2c2451;
   border-radius: 16px;
   background-color: #2c2451;
@@ -446,7 +479,7 @@ header {
 }
 
 .projects h1 {
-  padding-bottom: 10svh;
+  padding-bottom: clamp(5vw, 10svh);
 }
 
 .projects-card {
@@ -465,6 +498,11 @@ header {
   margin: 5vh;
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.projects-content:hover {
+  background-color: #46397e;
+  transition: all ease-in-out 0.5s;
 }
 
 .projects-content .projects-content-link {
@@ -526,13 +564,13 @@ header {
 }
 .projects-content .projects-content-description {
   opacity: 0;
-  transition: opacity 0.5s linear;
+  transition: opacity 0.5s ease-in-out;
 }
 
 .projects-content:hover .projects-content-description {
   max-height: fit-content;
   opacity: 1;
-  transition: opacity 0.5s linear;
+  transition: opacity 0.5s ease-in-out;
 }
 
 .projects-content:hover .projects-content-image {
@@ -562,11 +600,9 @@ footer {
 
 .projets-header {
   height: 30svh;
-  background-image: url("../ressources/project-portfolio.png");
+  background-image: url("../ressources/projets-header.png");
   background-size: cover;
-  /* filter: blur(10px) contrast(50%);
-  background-color: #2c2451;
-  border: none; */
+  background-position: top 200px;
   display: flex;
   align-items: center;
   justify-content: center;
