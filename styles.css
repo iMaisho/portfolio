@@ -194,6 +194,30 @@ header {
   }
 }
 
+@keyframes float {
+  0% {
+    transform: rotate(0deg) translateY(-10px) rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg) translateY(-10px) rotate(-360deg);
+  }
+}
+
+@keyframes moveplanet {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(20px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
 .hero-header {
   height: 100svh;
   width: 100vw;
@@ -213,11 +237,11 @@ header {
   border-radius: 50px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(5px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
   color: white;
   padding: 3%;
   font-size: clamp(0.9375rem, 0.1042rem + 1.3021vw, 2.1875rem);
   margin: 0;
+  border: 1px solid rgba(255, 255, 255, 0.091);
 }
 
 .hero-header-content h1 {
@@ -242,13 +266,17 @@ header {
   font-family: "Poppins", sans-serif;
   font-weight: 500;
   font-style: normal;
-  font-size: 25px;
   margin-right: 20px;
   border: none;
   color: white;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  border: 2px solid rgba(255, 255, 255, 0.108);
+  border: 1px solid rgba(255, 255, 255, 0.091);
   position: relative;
+}
+
+.hero-header-content .button-cv {
+  background-color: #ffffff1a;
+  border: 1px solid rgba(255, 255, 255, 0.091);
 }
 
 .hero-header-content button a {
@@ -265,9 +293,14 @@ header {
 .hero-header-content button:hover {
   background: #46397e;
   transition: ease-in-out 0.2s all;
-  border: rgba(255, 255, 255, 0) 2px solid;
+  border: rgba(255, 255, 255, 0) 1px solid;
 }
 
+@media screen and (max-width: 746px) {
+  .hero-header-content .button-cv {
+    margin-top: 20px;
+  }
+}
 .hero-header h1 {
   margin: 0;
 }
@@ -290,7 +323,9 @@ header {
   background-repeat: no-repeat;
   z-index: 4;
   transform: rotate(20deg);
+  animation: float 7s linear infinite;
 }
+
 .planet-sand {
   height: 60svh;
   width: 60svh;
@@ -301,6 +336,7 @@ header {
   margin-top: -10%;
   z-index: 3;
   transform: rotate(130deg);
+  animation: moveplanet 20s ease-in-out infinite;
 }
 
 .planet-earth {
@@ -313,6 +349,7 @@ header {
   margin-bottom: -50%;
   z-index: 3;
   transform: rotate(-10deg);
+  animation: moveplanet 13s ease-in-out infinite;
 }
 
 .planet-sun {
@@ -323,6 +360,7 @@ header {
   top: -7%;
   z-index: 3;
   transform: rotate(-10deg);
+  animation: moveplanet 25s ease-in-out infinite;
 }
 
 .planet-floor {
@@ -357,10 +395,11 @@ header {
 @media screen and (max-width: 1025px) {
   .hero-header-content {
     top: 20svh;
-    font-size: clamp(1.25rem, -0.9912rem + 4.6693vw, 2rem);
+    font-size: clamp(1.15rem, -0.9912rem + 4.6693vw, 2rem);
     width: 50%;
     height: 50%;
     padding: 5%;
+    left: 25%;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -401,14 +440,14 @@ header {
   }
 
   .hero-header-content button {
-    font-size: 10px;
+    font-size: 15px;
     margin-top: 2svh;
   }
 
   .astronaut {
     height: 50vw;
     width: 50vw;
-    top: 65svh;
+    top: 70%;
   }
 
   .planet-sand {
@@ -431,6 +470,9 @@ header {
   text-align: center;
 }
 
+.astronaut_conquest {
+  display: none;
+}
 .roller-content {
   display: flex;
   flex-direction: row;
@@ -463,13 +505,46 @@ header {
   color: white;
 }
 
-.roller-content .roller-section-image {
+.roller-section-image {
   text-align: center;
   font-size: 10svh;
   color: white;
   width: 100%;
 }
 
+@media screen and (min-width: 1025px) {
+  .roller-content {
+    justify-content: center;
+    padding: 0%;
+    margin: 80px 0px 150px;
+  }
+
+  .roller-section {
+    margin: 0;
+    background-color: rgb(182, 182, 182);
+    border: 1px solid #2c245163;
+    border-radius: 0px;
+    padding: 0;
+    height: 400px;
+    width: 100px;
+    display: flex;
+    align-items: center;
+    transition: flex-grow ease-in-out 0.5s;
+  }
+
+  .roller-section:hover {
+    flex-grow: 0.3;
+    transition: flex-grow ease-in-out 0.5s;
+  }
+  .roller-section-image {
+    color: #2c2451;
+    font-size: 30px;
+  }
+  .roller-section-legende {
+    color: #2c2451;
+    display: none;
+  }
+}
 .projects {
   display: flex;
   flex-direction: column;
@@ -477,9 +552,23 @@ header {
   height: fit-content;
   padding: 5svh 10svh;
 }
+@media screen and (min-width: 1025px) {
+  .projects {
+    position: relative;
+  }
+  .projects .astronaut_conquest {
+    display: block;
+    width: 120vw;
+    pointer-events: none;
+    position: absolute;
+    transform: translate(-50%, -90%);
+    left: 50vw;
+  }
+}
 
 .projects h1 {
   padding-bottom: clamp(5vw, 10svh);
+  margin: 150px 0px 100px 0px;
 }
 
 .projects-card {
@@ -498,11 +587,26 @@ header {
   margin: 5vh;
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  transform: translateY(-3px);
+  transition: all ease-in-out 0.5s;
 }
 
 .projects-content:hover {
   background-color: #46397e;
   transition: all ease-in-out 0.5s;
+  animation: hover 3s infinite linear;
+  box-shadow: 10px 15px 30px #2c245190;
+  transform: scale(20%);
+}
+
+@keyframes hover {
+  0% {
+    transform: rotate(0deg) translateY(-3px) rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg) translateY(-3px) rotate(-360deg);
+  }
 }
 
 .projects-content .projects-content-link {
