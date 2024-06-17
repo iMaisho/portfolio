@@ -10,6 +10,18 @@ html {
   font-style: normal;
 }
 
+@property --color1 {
+  syntax: "<color>";
+  initial-value: white;
+  inherits: false;
+}
+
+@property --color2 {
+  syntax: "<color>";
+  initial-value: white;
+  inherits: false;
+}
+
 @media screen and (min-width: 1025px) {
   html {
     cursor: none;
@@ -396,7 +408,7 @@ header {
   background-image: url(ressources/down_arrow.svg);
   background-repeat: no-repeat;
   position: absolute;
-  z-index: 999;
+  z-index: 8;
   height: 30px;
   width: 30px;
   margin-left: auto;
@@ -491,6 +503,27 @@ header {
   text-align: center;
 }
 
+.tooltip {
+  display: none;
+  background: #2b2451f1;
+  margin-left: 28px;
+  padding: 10px;
+  position: absolute;
+  left: 50px;
+  top: -50px;
+  z-index: 9;
+  width: 200px;
+  font-size: 12px;
+  font-weight: 200;
+  color: #ffffff;
+  text-align: start;
+  border-radius: 20px;
+}
+
+.roller-section:hover .tooltip {
+  display: block;
+}
+
 .astronaut_conquest {
   display: none;
 }
@@ -552,11 +585,11 @@ header {
     align-items: center;
     transition: all ease-in-out 0.8s;
     position: relative;
-    overflow: hidden;
     pointer-events: auto;
 
     &:nth-child(2) {
-      background-color: rgba(251, 251, 255);
+      transition: --color1 ease-in-out 0.8s, --color2 ease-in-out 0.8s;
+      background: linear-gradient(-45deg, var(--color1) 50%, var(--color2) 50%);
     }
   }
 
@@ -567,12 +600,8 @@ header {
       background-color: rgb(0, 68, 130);
     }
     &:nth-child(2) {
-      background-color: rgba(251, 251, 255, 0);
-      background: linear-gradient(
-        -45deg,
-        rgb(246, 207, 67) 50%,
-        rgb(50, 104, 148) 50%
-      );
+      --color1: rgb(246, 207, 67);
+      --color2: rgb(50, 104, 148);
     }
     &:nth-child(3) {
       background-color: rgb(15, 128, 204);
@@ -625,7 +654,7 @@ header {
   }
 
   .roller-section:hover .roller-section-legende {
-    color: rgba(255, 255, 255, 0.775);
+    color: rgba(255, 255, 255, 0.8);
     transition: all linear 0.1s;
 
     height: 100%;
@@ -675,6 +704,26 @@ header {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+}
+
+.tooltip-2 {
+  display: none;
+  background: #2b2451f1;
+  margin-left: 28px;
+  padding: 10px;
+  position: absolute;
+  left: 120px;
+  top: -100px;
+  z-index: 10000;
+  width: 200px;
+  font-size: 12px;
+  font-weight: 200;
+  color: #ffffff;
+  text-align: start;
+  border-radius: 20px;
+}
+.projects-card:hover .tooltip-2 {
+  display: block;
 }
 .projects-content {
   position: relative;
@@ -770,9 +819,14 @@ header {
 
 .projects-content-title {
   font-size: x-large;
-  padding: 3% 10%;
+  padding: 3% 10% 0%;
 }
-
+.projects-content-info {
+  font-size: small;
+  padding: 0% 10%;
+  font-weight: 100;
+  color: #e6e6e6;
+}
 .projects-content-description {
   font-size: medium;
   font-weight: 200;
