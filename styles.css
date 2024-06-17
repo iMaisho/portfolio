@@ -392,6 +392,27 @@ header {
   z-index: 2;
 }
 
+.down-arrow {
+  background-image: url(ressources/down_arrow.svg);
+  background-repeat: no-repeat;
+  position: absolute;
+  z-index: 999;
+  height: 30px;
+  width: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+  top: 90%;
+  animation: float 3s infinite ease-in-out;
+}
+
+.down-arrow::before {
+  content: url(ressources/down_arrow.svg);
+  transform: translateY(20px);
+}
+
 @media screen and (max-width: 1025px) {
   .hero-header-content {
     top: 20svh;
@@ -477,12 +498,12 @@ header {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  width: 90vw;
+  width: fit-content;
   justify-content: space-evenly;
   padding: clamp(5vw, 10svh) 5% 5% 5%;
 }
 
-@media screen and (max-width: 430px) {
+@media screen and (max-width: 1024px) {
   .roller-content {
     flex-wrap: nowrap;
     overflow-x: scroll;
@@ -521,28 +542,93 @@ header {
 
   .roller-section {
     margin: 0;
-    background-color: rgb(182, 182, 182);
-    border: 1px solid #2c245163;
+    background-color: rgb(251, 251, 255);
+    border: solid 1px #e6e6e6;
     border-radius: 0px;
     padding: 0;
     height: 400px;
     width: 100px;
     display: flex;
     align-items: center;
-    transition: flex-grow ease-in-out 0.5s;
+    transition: all ease-in-out 0.8s;
+    position: relative;
+    overflow: hidden;
+    pointer-events: auto;
+
+    &:nth-child(2) {
+      background-color: rgba(251, 251, 255);
+    }
   }
 
   .roller-section:hover {
-    flex-grow: 0.3;
-    transition: flex-grow ease-in-out 0.5s;
+    transition: all ease-in-out 0.1s;
+
+    &:nth-child(1) {
+      background-color: rgb(0, 68, 130);
+    }
+    &:nth-child(2) {
+      background-color: rgba(251, 251, 255, 0);
+      background: linear-gradient(
+        -45deg,
+        rgb(246, 207, 67) 50%,
+        rgb(50, 104, 148) 50%
+      );
+    }
+    &:nth-child(3) {
+      background-color: rgb(15, 128, 204);
+    }
+    &:nth-child(4) {
+      background-color: rgb(255, 50, 54);
+    }
+    &:nth-child(5) {
+      background-color: rgb(27, 115, 186);
+    }
+    &:nth-child(6) {
+      background-color: rgb(240, 219, 79);
+    }
+    &:nth-child(7) {
+      background-color: rgb(21, 125, 104);
+    }
   }
+
   .roller-section-image {
-    color: #2c2451;
+    color: #d6d5db;
     font-size: 30px;
+    position: absolute;
+    left: center;
+    bottom: center;
+    pointer-events: none;
+    opacity: 100%;
+    transition: opacity ease-in-out 0.5s;
+    transition-delay: 0.3s;
   }
+
+  .roller-section:hover .roller-section-image {
+    /* font-size: 100px; */
+    /* transform: translateY(400px); */
+    transition: all ease-in-out 0s;
+    opacity: 0%;
+  }
+
   .roller-section-legende {
-    color: #2c2451;
-    display: none;
+    color: #2c245100;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 5px;
+    writing-mode: vertical-lr;
+    text-transform: uppercase;
+    /* vertical-align: middle; */
+    font-size: 60px;
+    transition: all ease-in-out 1s;
+    user-select: none;
+  }
+
+  .roller-section:hover .roller-section-legende {
+    color: rgba(255, 255, 255, 0.775);
+    transition: all linear 0.1s;
+
+    height: 100%;
   }
 }
 .projects {
@@ -561,14 +647,28 @@ header {
     width: 120vw;
     pointer-events: none;
     position: absolute;
-    transform: translate(-50%, -90%);
     left: 50vw;
+    animation: hover2 3s infinite linear;
+  }
+
+  @keyframes hover2 {
+    0% {
+      transform: translate(-50%, -90%) rotate(0deg) translateY(-3px)
+        rotate(0deg);
+    }
+
+    100% {
+      transform: translate(-50%, -90%) rotate(360deg) translateY(-3px)
+        rotate(-360deg);
+    }
+  }
+  .projects h1 {
+    margin: 150px 0px 100px 0px;
   }
 }
 
 .projects h1 {
   padding-bottom: clamp(5vw, 10svh);
-  margin: 150px 0px 100px 0px;
 }
 
 .projects-card {
@@ -606,6 +706,18 @@ header {
 
   100% {
     transform: rotate(360deg) translateY(-3px) rotate(-360deg);
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(10px);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+  100% {
+    transform: translateY(10px);
   }
 }
 
